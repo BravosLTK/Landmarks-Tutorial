@@ -6,7 +6,13 @@
 //
 
 import Foundation
-var landmarks: [Landmark] = load("landmarkData.json")
+import Combine
+
+
+final class ModelData: ObservableObject {
+    /// @Published is a property wrapper in SwiftUI and is used in combination with classes conforming to the ObservableObject protocol, marking properties of those classes that should trigger a view refresh when they are changed.
+   @Published var landmarks: [Landmark] = load("landmarkData.json")
+}
 
 
 func load<T: Decodable>(_ filename: String) -> T {
