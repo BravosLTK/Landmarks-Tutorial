@@ -13,6 +13,17 @@ final class ModelData: ObservableObject {
     /// @Published is a property wrapper in SwiftUI and is used in combination with classes conforming to the ObservableObject protocol, marking properties of those classes that should trigger a view refresh when they are changed.
    @Published var landmarks: [Landmark] = load("landmarkData.json")
     var hikes: [Hike] = load("hikeData.json")
+
+    var features: [Landmark] {
+        landmarks.filter { $0.isFeatured }
+    }
+    
+    var categories: [String: [Landmark]] {
+          Dictionary(
+              grouping: landmarks,
+              by: { $0.category.rawValue }
+          )
+      }
 }
 
 
